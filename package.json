@@ -1,0 +1,24 @@
+{
+  "name": "igcampanhas",
+  "version": "1.0.0",
+  "description": "Sistema IGCAMPANHAS",
+  "main": "index.js",
+  "scripts": {
+    "clean-client": "cd client && yarn clean",
+    "clean-server": "cd server && yarn clean",
+    "format": "yarn format-client && yarn format-server",
+    "format-client": "cd client && yarn format",
+    "format-server": "cd server && yarn format",
+    "lint": "yarn lint-client && yarn lint-server",
+    "lint-client": "cd client && yarn lint",
+    "lint-server": "cd server && yarn lint",
+    "build": "yarn build-client && yarn build-server",
+    "build-client": "cd client && yarn build",
+    "build-server": "cd server && yarn build"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "typescript": "^5.7.3"
+  }
+}
