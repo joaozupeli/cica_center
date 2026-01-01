@@ -1,5 +1,4 @@
 import Usuario from "@models/usuario.model";
-import { AuthenticationDto } from "@modules/authentication/authentication.dto";
 import { Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
 import { InjectModel } from "@nestjs/sequelize";
@@ -30,7 +29,6 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
   async validate(payload: any) {
     return {
       ...payload.sub,
-      type: AuthenticationDto.Usuario,
     };
   }
 }

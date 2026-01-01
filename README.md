@@ -1,139 +1,161 @@
 # zpErp
-Controle total da sua vida em um só lugar. Simples assim.
 
-O que é isso?
-Eu cansei de ter meus dados espalhados em mil apps diferentes. Gastos no Excel, tarefas no Google Keep, treinos no caderninho... Um caos total.
-Daí pensei: por que não fazer um sistema só pra mim? Um lugar onde eu tenho controle de tudo que importa na minha vida.
-Não é sobre ser perfeito. É sobre funcionar e me ajudar de verdade.
+Sistema de Gestão Empresarial completo. Simples assim.
 
-O que ele faz?
-Por enquanto, o básico que eu preciso:
+## O que é isso?
 
-Financeiro
+Um ERP moderno e minimalista para gerenciar todos os aspectos do seu negócio em um só lugar. Interface elegante em preto e branco, focada na experiência do usuário.
 
-Anoto todas as receitas e despesas
-Vejo onde tá indo minha grana (spoiler: sempre é ifood)
-Acompanho se tô conseguindo economizar
-Relatórios simples pra entender o mês
+## Módulos
 
-Tarefas
+### Dashboard
+- Visão geral de todas as métricas
+- Ações rápidas para tarefas comuns
+- Resumo financeiro e de atividades
+- Cards com indicadores principais
 
-Lista do que preciso fazer
-Kanban básico (a fazer → fazendo → feito)
-Filtros pra não me perder
-Nada de gamificação ou firula
+### Financeiro
+- Controle de receitas e despesas
+- Gestão de contas bancárias
+- Fluxo de caixa
+- Previsão financeira
 
-Dashboard
+### Tarefas
+- Lista de tarefas com filtros
+- Status: Pendente, Em Andamento, Concluída
+- Interface limpa e direta
+- Produtividade em foco
 
-Resumo de tudo numa tela só
-Gráficos que fazem sentido
-Dados que eu realmente uso
+### Clientes
+- Cadastro completo de clientes
+- Busca e filtros avançados
+- Visualização em grid ou lista
 
-Por que fiz isso?
+### Produtos
+- Gestão de produtos e estoque
+- Categorização
+- Controle de inventário
 
-Aprender fazendo - Teoria é legal, mas sujar a mão é melhor
-Resolver meu problema - Se funciona pra mim, já valeu
-Ter algo pra mostrar - Portfólio que não é todo list genérico
-Controlar meus dados - Meus dados, meu servidor, minhas regras
+### Vendas
+- Registro de vendas
+- Status de pedidos
+- Faturamento
 
-Stack
-Escolhi tecnologias que eu quero dominar de verdade:
-Frontend:
+### Relatórios
+- Relatório de Vendas
+- Relatório Financeiro
+- Relatório de Clientes
+- Relatório de Produtos
+- Relatório Gerencial
+- Relatórios Personalizados
 
-Vue 3 (Composition API)
-TypeScript (java pros fracos)
-shadcn-vue (componentes prontos e bonitos)
-Vite (react é pra emocionado)
-pnpm (gerenciador de pacote que funciona & eficiente)
+### Configurações
+- Gerenciamento de Usuários
+- Dados da Empresa
+- Configurações do Sistema
+- Backup
+- Integrações
 
-Backend:
+## Stack
 
-NestJS (estrutura que faz sentido)
-TypeScript (consistência é bom)
-Sequelize ORM (falar com banco de forma humana)
-JWT (autenticação sem segredo)
-Docker (ambiente reproduzível)
+### Frontend
+- Vue 3 (Composition API)
+- TypeScript
+- Vuetify 3 (componentes Material Design)
+- Vite
+- Pinia (gerenciamento de estado)
+- pnpm
 
-Banco:
+### Backend
+- NestJS
+- TypeScript
+- Sequelize ORM
+- JWT (autenticação)
 
-MariaDB (confiável e rápido)
+### Banco
+- MariaDB
 
-Como rodar
-Pré-requisitos
+## Como rodar
 
-Node.js 18+
-pnpm (npm install -g pnpm)
-Docker & Docker Compose
+### Pré-requisitos
+- Node.js 18+
+- pnpm (`npm install -g pnpm`)
+- Docker & Docker Compose
 
-Setup
-bash# Clona o repo
-git clone https://github.com/seu-usuario/personal-erp.git
-cd personal-erp
+### Setup
 
-# Sobe o banco
-docker-compose up -d
+```bash
+# Clona o repo
+git clone https://github.com/seu-usuario/zperp.git
+cd zperp
 
 # Backend
-cd backend
+cd server
 pnpm install
 pnpm run start:dev
 
 # Frontend (em outro terminal)
-cd frontend
-
+cd client
 pnpm install
-
 pnpm run dev
+```
 
-Estrutura
+## Estrutura
 
-personal-erp/
+```
+zperp/
+├── client/              # Vue 3 + Vuetify
+│   ├── src/
+│   │   ├── components/  # Componentes reutilizáveis
+│   │   ├── layouts/     # Layout principal
+│   │   ├── views/       # Páginas
+│   │   │   ├── auth/
+│   │   │   ├── dashboard/
+│   │   │   ├── financeiro/
+│   │   │   ├── tarefas/
+│   │   │   ├── clientes/
+│   │   │   ├── produtos/
+│   │   │   ├── vendas/
+│   │   │   ├── relatorios/
+│   │   │   └── configuracoes/
+│   │   ├── stores/      # Pinia stores
+│   │   └── router/      # Rotas
+│   └── ...
+├── server/              # NestJS
+│   ├── src/
+│   │   ├── modules/     # Módulos da aplicação
+│   │   ├── models/      # Models Sequelize
+│   │   └── common/      # Decorators, guards, etc
+│   └── ...
+└── README.md
+```
 
-├── client/
+## Design
 
-   ├── frontend/           # Vue 3 + shadcn
-  
-├── server/
+O sistema utiliza um tema **preto e branco** minimalista:
+- Interface escura com detalhes em branco
+- Ícones MDI (Material Design Icons)
+- Tipografia: Sora (UI) + JetBrains Mono (dados)
+- Cards com bordas sutis e animações suaves
+- Layout responsivo
 
-   ├── backend/            # NestJS
+## Roadmap
 
-├── docker-compose.yml  # MariaDB
+- [x] Autenticação
+- [x] Layout principal
+- [x] Dashboard
+- [ ] Módulo Financeiro completo
+- [ ] Módulo Tarefas completo
+- [ ] Módulo Clientes completo
+- [ ] Módulo Produtos completo
+- [ ] Módulo Vendas completo
+- [ ] Relatórios dinâmicos
+- [ ] Integrações
 
-└── README.md           # você está aqui
+## Licença
 
-Cada módulo é independente. Financeiro não depende de Tarefas. Se eu quebrar algo, não quebra tudo.
-
-Roadmap
-
-Não é promessa, é intenção:
-
- Autenticação básica
- Módulo Financeiro
- Módulo Tarefas
- Dashboard com resumo geral
- Módulo Saúde (treinos, peso)
- Módulo Estudos (livros, cursos)
- Relatórios em PDF
- App mobile (talvez?)
-
-Vou adicionando conforme sinto necessidade. Sem pressão.
-Aprendizados
-O que tô tirando desse projeto:
-
-Arquitetura modular na prática
-Relacionamentos de banco de dados
-Autenticação JWT do jeito certo
-Gerenciamento de estado no Vue
-Docker pra desenvolvimento
-TypeScript em projeto real
-
-Contribuindo
-Por enquanto é só meu. Mas se você quer fazer um fork e adaptar pro seu uso, vai fundo. Código tá aí pra isso.
-
-Licença
 MIT - faça o que quiser
 
-Contato
-Se quiser trocar ideia sobre o projeto ou sobre desenvolvimento em geral, me chama.
+---
 
 Feito com café, música e tentativa e erro.

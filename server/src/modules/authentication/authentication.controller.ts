@@ -15,10 +15,9 @@ export class AuthenticationController {
   @Post("login")
   login(
     @Body() autenticacaoLoginDto: AutenticacaoLoginDto,
-    @Headers("user-agent") agente: string,
     @Ip() ip: string
   ) {
-    return this.authenticationService.login(autenticacaoLoginDto, agente, ip);
+    return this.authenticationService.login(autenticacaoLoginDto, ip);
   }
 
   @Public()

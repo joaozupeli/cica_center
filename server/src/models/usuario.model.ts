@@ -1,13 +1,19 @@
-import { ModelBase } from '@config/database/model_base';
-import { AllowNull, BelongsTo, Column, DataType, ForeignKey, Table } from 'sequelize-typescript';
-import EmpresaModel from './empresa.model';
-import PerfilModel from './perfil.model';
+import { ModelBase } from "@config/database/model_base";
+import {
+  AllowNull,
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  Table,
+} from "sequelize-typescript";
+import PerfilModel from "@models/perfil.model";
 
 export enum UsuarioAtivo {
   Sim = 1,
-  Nao = 0
+  Nao = 0,
 }
-@Table({ tableName: 'usuario' })
+@Table({ tableName: "usuario" })
 export default class UsuarioModel extends ModelBase {
   @AllowNull(true)
   @Column(DataType.STRING(255))
@@ -23,13 +29,6 @@ export default class UsuarioModel extends ModelBase {
 
   @AllowNull(true)
   @Column(DataType.INTEGER)
-  empresaId: number;
-
-  @BelongsTo(() => EmpresaModel, { foreignKey: 'empresaId' })
-  empresa: EmpresaModel;
-
-  @AllowNull(true)
-  @Column(DataType.INTEGER)
   ativo: UsuarioAtivo;
 
   @AllowNull(false)
@@ -37,6 +36,6 @@ export default class UsuarioModel extends ModelBase {
   @ForeignKey(() => PerfilModel)
   perfilId: number;
 
-  @BelongsTo(() => PerfilModel, { foreignKey: 'perfilId' })
+  @BelongsTo(() => PerfilModel, { foreignKey: "perfilId" })
   perfil: PerfilModel;
 }

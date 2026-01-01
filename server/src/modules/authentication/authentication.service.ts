@@ -2,7 +2,6 @@ import Usuario, { UsuarioAtivo } from "@models/usuario.model";
 import {
   AutenticacaoAlterarSenhaDto,
   AutenticacaoLoginDto,
-  AuthenticationDto,
 } from "./authentication.dto";
 import { Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
@@ -21,7 +20,6 @@ export class AuthenticationService {
 
   async login(
     autenticacaoLoginDto: AutenticacaoLoginDto,
-    agente: string,
     ip: string
   ) {
     const msgGenerica = "Usuário e/ou senha inválidos!";
@@ -56,23 +54,18 @@ export class AuthenticationService {
 
     let token: string;
     token = await this.jwtService.signAsync({
-      type: AuthenticationDto.Usuario,
       login: usuario.login,
-      empresaId: usuario.empresaId,
       sub: {
         id: usuario.id,
         ativo: usuario.ativo,
         login: usuario.login,
         nome: usuario.nome,
-        empresaId: usuario.empresaId,
       },
-      agente,
       ip,
     });
 
     return {
       nome: usuario.nome,
-      empresaId: usuario.empresaId,
       perfilId: usuario.perfilId,
       token,
       expires_in: process.env.APP_EXPIRE_TOKEN,

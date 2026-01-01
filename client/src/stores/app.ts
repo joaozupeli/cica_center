@@ -8,6 +8,7 @@ export interface SnackBar {
   icon: string;
   timeout: number;
 }
+
 export interface Notify {
   text: any;
   icon: string;
@@ -54,17 +55,14 @@ export const useAppStore = defineStore("app", {
         const res = await axios.post("autenticacao/login", payload);
 
         if (res?.data?.token) {
-          localStorage.setItem("igcampanhas:token", res.data.token);
-          localStorage.setItem("igcampanhas:login", window.btoa(payload.login));
-          localStorage.setItem("igcampanhas:nome", window.btoa(res.data.nome));
-          localStorage.setItem(
-            "igcampanhas:email",
-            window.btoa(res.data.email)
-          );
+          localStorage.setItem("zperp:token", res.data.token);
+          localStorage.setItem("zperp:login", window.btoa(payload.login));
+          localStorage.setItem("zperp:nome", window.btoa(res.data.nome));
+          localStorage.setItem("zperp:email", window.btoa(res.data.email));
           
           // Salvar perfilId se existir
           if (res.data.perfilId) {
-            localStorage.setItem("igcampanhas:perfilId", res.data.perfilId.toString());
+            localStorage.setItem("zperp:perfilId", res.data.perfilId.toString());
           }
 
           this.userLogin = payload.login;
@@ -78,11 +76,11 @@ export const useAppStore = defineStore("app", {
     },
     async logout(): Promise<any> {
       try {
-        localStorage.removeItem("igcampanhas:token");
-        localStorage.removeItem("igcampanhas:login");
-        localStorage.removeItem("igcampanhas:nome");
-        localStorage.removeItem("igcampanhas:email");
-        localStorage.removeItem("igcampanhas:perfilId");
+        localStorage.removeItem("zperp:token");
+        localStorage.removeItem("zperp:login");
+        localStorage.removeItem("zperp:nome");
+        localStorage.removeItem("zperp:email");
+        localStorage.removeItem("zperp:perfilId");
         axios.defaults.headers.Authorization = null;
         return { mensagem: "Logout realizado com sucesso" };
       } catch (error) {
@@ -92,14 +90,14 @@ export const useAppStore = defineStore("app", {
     
     // Função para obter perfilId do usuário
     getPerfilId(): number | null {
-      const perfilId = localStorage.getItem("igcampanhas:perfilId");
+      const perfilId = localStorage.getItem("zperp:perfilId");
       return perfilId ? parseInt(perfilId, 10) : null;
     },
     
     // Função para verificar se o perfil tem acesso a uma rota
     hasAccess(perfisPermitidos: number[] | undefined): boolean {
       if (!perfisPermitidos || perfisPermitidos.length === 0) {
-        return true; // Se não especificar perfis, todos têm acesso
+        return true;
       }
       const perfilId = this.getPerfilId();
       return perfilId !== null && perfisPermitidos.includes(perfilId);

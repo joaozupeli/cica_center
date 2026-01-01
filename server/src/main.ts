@@ -1,4 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+import "dotenv/config";
 const { name } = require("../package.json");
 
 import { HttpExceptionFilter } from "@common/filters/http-exception.filter";
@@ -17,8 +18,6 @@ import ApiIGERP from "@common/helpers/api_igerp";
 
 async function bootstrap() {
   // Inicializa a configuração da API IGERP antes de iniciar a aplicação
-  ApiIGERP.config();
-
   const app = await NestFactory.create(AppModule, {
     logger: WinstonModule.createLogger({
       format: format.combine(

@@ -3,43 +3,40 @@ import { useAppStore } from "@/stores/app";
 import { useDateFormat, useNow } from "@vueuse/core";
 import { computed, onMounted, ref } from "vue";
 import { RouterView, useRouter } from "vue-router";
-import { useDisplay, useTheme } from "vuetify";
+import { useDisplay } from "vuetify";
 import { version } from "../../package.json";
-import g4_branco from "@/assets/g4_branco.svg";
 import Loading from "@/components/Loading.vue";
 
 const router = useRouter();
 const appStore = useAppStore();
 const { mobile } = useDisplay();
-const theme = useTheme();
-const isDark = theme.themes.value.light.dark;
-const dataAtual = useDateFormat(useNow(), "dddd - DD/MM/YYYY - HH:mm:ss");
+const dataAtual = useDateFormat(useNow(), "DD/MM/YYYY HH:mm");
 const drawer = ref(!mobile.value);
-const miniVariant = ref(false);
 
-const login = localStorage.getItem("igcampanhas:login")
-  ? window.atob(localStorage.getItem("igcampanhas:login") || "")
+const login = localStorage.getItem("zperp:login")
+  ? window.atob(localStorage.getItem("zperp:login") || "")
   : "Usuário";
 
-const nome = localStorage.getItem("igcampanhas:nome")
-  ? window.atob(localStorage.getItem("igcampanhas:nome") || "")
+const nome = localStorage.getItem("zperp:nome")
+  ? window.atob(localStorage.getItem("zperp:nome") || "")
   : "";
 
-// Mapeamento de rotas e perfis permitidos
 const menuItemsConfig = [
-  { title: "Início", icon: "mdi-home", to: "/home", perfis: [] },
-  { title: "Histórico", icon: "mdi-history", to: "/historico", perfis: [] },
-  { title: "Clientes", icon: "mdi-account", to: "/clientes", perfis: [] },
-  { title: "Ganhadores", icon: "mdi-trophy", to: "/ganhadores", perfis: [] },
-  { title: "Relatório", icon: "mdi-chart-bar", to: "/relatorio", perfis: [] },
+  { title: "Dashboard", icon: "mdi-view-dashboard", to: "/dashboard", perfis: [] },
+  { title: "Financeiro", icon: "mdi-cash-multiple", to: "/financeiro", perfis: [] },
+  { title: "Tarefas", icon: "mdi-clipboard-check-outline", to: "/tarefas", perfis: [] },
+  { title: "Clientes", icon: "mdi-account-group", to: "/clientes", perfis: [] },
+  { title: "Produtos", icon: "mdi-package-variant-closed", to: "/produtos", perfis: [] },
+  { title: "Vendas", icon: "mdi-cart-outline", to: "/vendas", perfis: [] },
+  { title: "Relatórios", icon: "mdi-chart-bar", to: "/relatorios", perfis: [] },
 ];
 
-const cadastrosItemsConfig = [
-  { title: "Campanhas", icon: "mdi-bullhorn", to: "/campanhas", perfis: [1] },
-  { title: "Usuários", icon: "mdi-account-group", to: "/cadastro/usuario", perfis: [1] },
+const configItemsConfig = [
+  { title: "Usuários", icon: "mdi-account-cog", to: "/configuracoes/usuarios", perfis: [1] },
+  { title: "Empresa", icon: "mdi-domain", to: "/configuracoes/empresa", perfis: [1] },
+  { title: "Sistema", icon: "mdi-cog", to: "/configuracoes", perfis: [1] },
 ];
 
-// Filtrar itens do menu baseado no perfil do usuário
 const menuItems = computed(() => {
   return menuItemsConfig.filter((item) => {
     if (!item.perfis || item.perfis.length === 0) return true;
@@ -47,8 +44,8 @@ const menuItems = computed(() => {
   });
 });
 
-const cadastrosItems = computed(() => {
-  return cadastrosItemsConfig.filter((item) => {
+const configItems = computed(() => {
+  return configItemsConfig.filter((item) => {
     if (!item.perfis || item.perfis.length === 0) return true;
     return appStore.hasAccess(item.perfis);
   });
@@ -68,151 +65,86 @@ function goToRoute(path: string) {
 }
 
 function isActiveRoute(path: string) {
-  return router.currentRoute.value.path === path;
+  return router.currentRoute.value.path === path || 
+         router.currentRoute.value.path.startsWith(path + '/');
 }
 
 onMounted(async () => {
-  if (localStorage.getItem("igcampanhas:token")) {
-    // Carregar dados iniciais se necessário
+  if (localStorage.getItem("zperp:token")) {
   }
 });
 </script>
 
 <template>
-  <v-app>
-    <!-- App Bar -->
-    <v-app-bar color="primary" elevation="2" density="comfortable">
+  <v-app class="app-container">
+    <v-app-bar color="black" elevation="0" density="compact" height="48">
       <template #prepend>
-        <v-app-bar-nav-icon color="white" @click="drawer = !drawer" />
+        <v-app-bar-nav-icon color="white" size="small" @click="drawer = !drawer" />
       </template>
 
-      <div class="d-flex align-center">
-        <img
-          :src="g4_branco"
-          alt="Logo"
-          height="36"
-          class="mr-2 cursor-pointer"
-          style="filter: brightness(0) invert(1)"
-          @click="goToRoute('/home')"
-        />
-        <span
-          class="text-h6 text-white font-weight-bold cursor-pointer d-none d-sm-block"
-          @click="goToRoute('/home')"
-        >
-          CAMPANHAS
-        </span>
+      <div class="d-flex align-center" style="cursor: pointer" @click="goToRoute('/dashboard')">
+        <v-icon size="20" color="white" class="mr-2">mdi-cogs</v-icon>
+        <span class="app-title d-none d-sm-block">zpErp</span>
       </div>
 
       <v-spacer />
 
-      <!-- Menu do usuário -->
       <v-menu offset-y>
         <template #activator="{ props }">
-          <v-btn v-bind="props" variant="text" class="text-white">
-            <v-icon class="mr-2">mdi-account-circle</v-icon>
-            <span class="d-none d-sm-block">{{ login }}</span>
-            <v-icon class="ml-1">mdi-chevron-down</v-icon>
+          <v-btn v-bind="props" variant="text" size="small" class="text-grey-lighten-1">
+            <v-icon size="18" class="mr-1">mdi-account-circle</v-icon>
+            <span class="d-none d-sm-block text-caption">{{ login }}</span>
+            <v-icon size="16" class="ml-1">mdi-chevron-down</v-icon>
           </v-btn>
         </template>
-        <v-card min-width="280" class="user-menu-card">
-          <v-card-text class="pa-4">
-            <div class="d-flex align-center mb-3">
-              <v-avatar color="primary" size="48">
-                <v-icon color="white" size="28">mdi-account</v-icon>
-              </v-avatar>
-              <div class="ml-3">
-                <div class="font-weight-bold">{{ login }}</div>
-                <div class="text-caption text-grey">{{ nome }}</div>
-              </div>
-            </div>
-          </v-card-text>
-          <v-divider />
-          <v-card-actions class="pa-2">
-            <v-btn
-              block
-              color="error"
-              variant="tonal"
-              prepend-icon="mdi-logout"
-              @click="handleLogout"
-            >
-              Sair
-            </v-btn>
-          </v-card-actions>
-        </v-card>
-      </v-menu>
-
-      <!-- Menu vertical (3 pontinhos) -->
-      <!-- <v-menu offset-y>
-          <template #activator="{ props }">
-            <v-btn
-              v-bind="props"
-              icon
-              variant="text"
-              color="white"
-            >
-              <v-icon>mdi-dots-vertical</v-icon>
-            </v-btn>
-          </template>
-          <v-list density="compact">
-            <v-list-item @click="handleLogout">
-              <template #prepend>
-                <v-icon color="error">mdi-logout</v-icon>
-              </template>
-              <v-list-item-title>Sair do Sistema</v-list-item-title>
+        <v-card min-width="200" color="grey-darken-4" class="py-1">
+          <v-list density="compact" bg-color="transparent" class="py-0">
+            <v-list-item class="text-grey-lighten-1">
+              <div class="text-caption font-weight-medium">{{ login }}</div>
+              <div class="text-caption text-grey">{{ nome }}</div>
             </v-list-item>
           </v-list>
-        </v-menu> -->
+          <v-divider color="grey-darken-3" class="my-1" />
+          <v-list density="compact" bg-color="transparent" class="py-0">
+            <v-list-item
+              prepend-icon="mdi-logout"
+              class="text-grey-lighten-1"
+              @click="handleLogout"
+            >
+              <v-list-item-title class="text-caption">Sair</v-list-item-title>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </v-menu>
     </v-app-bar>
 
-    <!-- Navigation Drawer (Sidebar) -->
     <v-navigation-drawer
       v-model="drawer"
-      :rail="miniVariant && !mobile"
       :temporary="mobile"
       color="grey-darken-4"
-      width="256"
-      class="sidebar"
+      width="220"
     >
-      <!-- Logo no drawer -->
-      <!-- <div class="sidebar-header pa-4">
-          <div class="d-flex align-center">
-            <img
-              :src="g4_branco"
-              alt="Logo"
-              height="32"
-              style="filter: brightness(0) invert(1);"
-            />
-            <span v-if="!miniVariant" class="text-white font-weight-bold ml-2">
-            CAMPANHAS
-            </span>
-          </div>
-        </div> -->
-
-      <v-divider color="grey-darken-3" />
-
-      <!-- Menu Items -->
-      <v-list density="compact" nav class="sidebar-list">
-        <!-- Items principais -->
+      <v-list density="compact" nav class="py-2 px-2">
+        <div class="menu-section-title">MENU</div>
+        
         <v-list-item
           v-for="item in menuItems"
           :key="item.to"
           :to="item.to"
           :active="isActiveRoute(item.to)"
           :class="{ 'sidebar-item-active': isActiveRoute(item.to) }"
-          class="sidebar-item"
+          class="sidebar-item mb-1"
           rounded="lg"
+          height="36"
         >
           <template #prepend>
-            <v-icon :color="isActiveRoute(item.to) ? 'primary' : 'white'">
+            <v-icon :color="isActiveRoute(item.to) ? 'white' : 'grey'" size="18">
               {{ item.icon }}
             </v-icon>
           </template>
           <v-list-item-title
-            :class="
-              isActiveRoute(item.to)
-                ? 'text-primary font-weight-bold'
-                : 'text-white'
-            "
+            class="text-caption"
+            :class="isActiveRoute(item.to) ? 'text-white' : 'text-grey-lighten-1'"
           >
             {{ item.title }}
           </v-list-item-title>
@@ -220,158 +152,92 @@ onMounted(async () => {
 
         <v-divider color="grey-darken-3" class="my-2" />
 
-        <!-- Cadastros (grupo expansível) -->
-        <v-list-group v-if="appStore.hasAccess([1])" value="Cadastros" class="sidebar-group">
-          <template #activator="{ props }">
-            <v-list-item v-bind="props" class="sidebar-item" rounded="lg">
-              <template #prepend>
-                <v-icon color="primary">mdi-plus</v-icon>
-              </template>
-              <v-list-item-title class="text-primary font-weight-medium">
-                Cadastros
-              </v-list-item-title>
-            </v-list-item>
+        <div class="menu-section-title">CONFIG</div>
+        
+        <v-list-item
+          v-for="item in configItems"
+          :key="item.to"
+          :to="item.to"
+          :active="isActiveRoute(item.to)"
+          :class="{ 'sidebar-item-active': isActiveRoute(item.to) }"
+          class="sidebar-item mb-1"
+          rounded="lg"
+          height="36"
+        >
+          <template #prepend>
+            <v-icon :color="isActiveRoute(item.to) ? 'white' : 'grey'" size="18">
+              {{ item.icon }}
+            </v-icon>
           </template>
-
-          <v-list-item
-            v-for="subItem in cadastrosItems"
-            :key="subItem.to"
-            :to="subItem.to"
-            :active="isActiveRoute(subItem.to)"
-            :class="{ 'sidebar-item-active': isActiveRoute(subItem.to) }"
-            class="sidebar-item sidebar-subitem"
-            rounded="lg"
+          <v-list-item-title
+            class="text-caption"
+            :class="isActiveRoute(item.to) ? 'text-white' : 'text-grey-lighten-1'"
           >
-            <template #prepend>
-              <v-icon
-                :color="
-                  isActiveRoute(subItem.to) ? 'primary' : 'grey-lighten-1'
-                "
-                size="20"
-              >
-                {{ subItem.icon }}
-              </v-icon>
-            </template>
-            <v-list-item-title
-              :class="
-                isActiveRoute(subItem.to)
-                  ? 'text-primary font-weight-bold'
-                  : 'text-grey-lighten-1'
-              "
-              class="text-body-2"
-            >
-              {{ subItem.title }}
-            </v-list-item-title>
-          </v-list-item>
-        </v-list-group>
+            {{ item.title }}
+          </v-list-item-title>
+        </v-list-item>
       </v-list>
 
-      <!-- Footer do drawer -->
       <template #append>
-        <v-divider color="grey-darken-3" />
-        <div class="pa-3 text-center">
-          <span class="text-caption text-grey-darken-1"> {{ version }} </span>
+        <div class="pa-2 text-center">
+          <span class="text-caption text-grey-darken-1">v{{ version }}</span>
         </div>
       </template>
     </v-navigation-drawer>
 
-    <!-- Main Content -->
     <v-main class="main-content">
       <RouterView />
     </v-main>
 
-    <!-- Footer -->
-    <v-footer app color="primary" height="24" class="footer">
+    <v-footer app color="black" height="24">
       <div class="d-flex align-center justify-center w-100">
-        <span class="text-caption text-white">
-          {{ dataAtual }}
-          <span class="mx-4">|</span>
-          <strong>Sistema de Campanhas Promocionais</strong>
-          <span class="mx-4">|</span>
-          <strong>Versão {{ version }}</strong>
+        <span class="text-caption text-grey-darken-1">
+          {{ dataAtual }} | zpErp v{{ version }}
         </span>
       </div>
     </v-footer>
 
-    <!-- Loading overlay -->
     <Loading v-model="appStore.loading" />
-
-    <!-- Snackbar para notificações -->
-    <v-snackbar
-      :model-value="false"
-      color="primary"
-      timeout="3000"
-      location="top"
-    >
-      <div class="d-flex align-center">
-        <v-icon class="mr-2">mdi-information</v-icon>
-        Teste
-      </div>
-      <template #actions>
-        <v-btn variant="text" @click="false"> Fechar </v-btn>
-      </template>
-    </v-snackbar>
   </v-app>
 </template>
 
 <style lang="scss" scoped>
-.cursor-pointer {
-  cursor: pointer;
+.app-container {
+  background: #121212 !important;
 }
 
-.sidebar {
-  background: linear-gradient(180deg, #1a1a1a 0%, #2d2d2d 100%) !important;
+.app-title {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
 }
 
-.sidebar-header {
-  background: rgba(8, 96, 53, 0.2);
-}
-
-.sidebar-list {
-  padding: 8px;
+.menu-section-title {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: #444;
+  letter-spacing: 1px;
+  padding: 8px 12px 4px;
 }
 
 .sidebar-item {
-  margin-bottom: 4px;
-  transition: all 0.2s ease;
-
-  &:hover {
-    background: rgba(255, 255, 255, 0.08) !important;
-  }
+  min-height: 36px;
 }
 
 .sidebar-item-active {
-  background: rgba(8, 96, 53, 0.3) !important;
-  border-left: 3px solid #086035;
-}
-
-.sidebar-subitem {
-  margin-left: 12px;
-}
-
-.sidebar-group :deep(.v-list-group__items) {
-  padding-left: 0;
+  background: rgba(255, 255, 255, 0.08) !important;
 }
 
 .main-content {
-  background: linear-gradient(180deg, #f8faf9 0%, #f0f4f2 100%);
+  background: #1a1a1a;
 }
 
-.footer {
-  font-family:
-    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-}
-
-.user-menu-card {
-  border-radius: 12px !important;
-}
-
-// Ajustes para o tema escuro da sidebar
 :deep(.v-navigation-drawer) {
-  .v-list-item--active {
-    &::before {
-      opacity: 0 !important;
-    }
-  }
+  border-right: 1px solid rgba(255, 255, 255, 0.06) !important;
+}
+
+:deep(.v-list-item--active)::before {
+  opacity: 0 !important;
 }
 </style>

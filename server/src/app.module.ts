@@ -11,14 +11,8 @@ import { RequestContextModule } from 'nestjs-request-context';
 import { join } from 'path';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsuarioModule } from './modules/cadastro/usuario/usuario.module';
-import { ClienteModule } from './modules/cliente/cliente.module';
-import { GanhadoresModule } from './modules/ganhadores/ganhadores.module';
-import { RelatorioModule } from './modules/relatorio/relatorio.module';
-import { HistoricoModule } from './modules/historico/historico.module';
-import { CampanhaModule } from './modules/cadastro/campanha/campanha.module';
 import { S3Module } from '@common/helpers/s3/s3.module';
-import { PaginaInicioModule } from './modules/pagina_inicio/pagina_inicio.module';
+
 
 @Module({
   imports: [
@@ -29,14 +23,7 @@ import { PaginaInicioModule } from './modules/pagina_inicio/pagina_inicio.module
     }),
     DatabaseModule,
     AuthenticationModule,
-    UsuarioModule,
-    CampanhaModule,
-    HistoricoModule,
-    ClienteModule,
-    GanhadoresModule,
-    RelatorioModule,
     S3Module,
-    PaginaInicioModule,
   ],
   controllers: [AppController],
   providers: [

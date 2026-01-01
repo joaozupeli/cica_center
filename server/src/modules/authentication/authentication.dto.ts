@@ -1,9 +1,4 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
-
-export enum AuthenticationDto {
-  Usuario = 1,
-  APP = 2,
-}
+import { IsNotEmpty, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class AutenticacaoLoginDto {
   @IsString()

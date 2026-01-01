@@ -5,18 +5,76 @@ import { useAppStore } from "@/stores/app";
 export const routes = [
   {
     path: "/",
-    component: () => import("@/layouts/index.vue"), // Layout como componente pai
+    component: () => import("@/layouts/index.vue"),
     meta: { requiresAuth: true },
     children: [
       {
         path: "/",
-        redirect: "/home",
+        redirect: "/dashboard",
+      },
+      {
+        path: "dashboard",
+        name: "Dashboard",
+        component: () => import("@/views/dashboard/index.vue"),
+        meta: { perfis: [], title: "Dashboard" },
       },
       {
         path: "home",
-        name: "Home",
-        component: () => import("@/views/home/index.vue"),
-        meta: { perfis: [] }, // Todos os perfis têm acesso
+        redirect: "/dashboard",
+      },
+      {
+        path: "financeiro",
+        name: "Financeiro",
+        component: () => import("@/views/financeiro/index.vue"),
+        meta: { perfis: [], title: "Financeiro" },
+      },
+      {
+        path: "tarefas",
+        name: "Tarefas",
+        component: () => import("@/views/tarefas/index.vue"),
+        meta: { perfis: [], title: "Tarefas" },
+      },
+      {
+        path: "clientes",
+        name: "Clientes",
+        component: () => import("@/views/clientes/index.vue"),
+        meta: { perfis: [], title: "Clientes" },
+      },
+      {
+        path: "produtos",
+        name: "Produtos",
+        component: () => import("@/views/produtos/index.vue"),
+        meta: { perfis: [], title: "Produtos" },
+      },
+      {
+        path: "vendas",
+        name: "Vendas",
+        component: () => import("@/views/vendas/index.vue"),
+        meta: { perfis: [], title: "Vendas" },
+      },
+      {
+        path: "relatorios",
+        name: "Relatorios",
+        component: () => import("@/views/relatorios/index.vue"),
+        meta: { perfis: [], title: "Relatórios" },
+      },
+      {
+        path: "configuracoes",
+        name: "Configuracoes",
+        component: () => import("@/views/configuracoes/index.vue"),
+        meta: { perfis: [1], title: "Configurações" },
+      },
+      {
+        path: "configuracoes/usuarios",
+        name: "Usuarios",
+        component: () => import("@/views/configuracoes/usuarios/index.vue"),
+        meta: { perfis: [1], title: "Usuários" },
+      },
+      {
+        path: "configuracoes/empresa",
+        name: "Empresa",
+        component: () => import("@/views/configuracoes/empresa/index.vue"),
+        meta: { perfis: [1], title: "Empresa" },
       },
     ],
   },
@@ -50,9 +108,13 @@ router.beforeEach((to, from, next) => {
   const appStore = useAppStore();
   const toast = useToast();
   
+  // Atualizar título da página
+  const title = to.meta.title as string;
+  document.title = title ? `${title} | zpErp` : 'zpErp - Sistema de Gestão Empresarial';
+  
   // Verificar autenticação
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    const token = localStorage.getItem("igcampanhas:token");
+    const token = localStorage.getItem("zperp:token");
     if (!token) {
       toast.error("Por favor, faça login para acessar esta página.");
       next({ path: "/auth" });
