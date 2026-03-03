@@ -4,8 +4,8 @@ import dayjs from 'dayjs';
 import { RequestContext } from 'nestjs-request-context';
 import { join } from 'path';
 
-export const IGCAMPANHAS_DB_CONNECTION_NAME = 'igcampanhas';
-export const IGCAMPANHAS_DB_CONNECTION = IGCAMPANHAS_DB_CONNECTION_NAME + 'Connection';
+export const ZP_ERP_DB_CONNECTION_NAME = 'zpErp';
+export const ZP_ERP_DB_CONNECTION = ZP_ERP_DB_CONNECTION_NAME + 'Connection';
 @Module({
   imports: [
     SequelizeModule.forRootAsync({

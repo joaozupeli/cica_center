@@ -48,7 +48,7 @@ let loadingTimeoutId: number | null = null;
 const Axios = axios.create({
   baseURL: `${import.meta.env.VITE_API_URL}/api`,
   headers: {
-    Authorization: `Bearer ${localStorage.getItem("igcampanhas:token")}`,
+    Authorization: `Bearer ${localStorage.getItem("zpErp:token")}`,
   },
 });
 
@@ -60,7 +60,7 @@ let requestsMap: Record<string, { url: string; startTime: number }> = {};
 
 // Controle de throttle para atualização de localização via localStorage
 const LOCATION_UPDATE_INTERVAL = 300000; // 5 minutos em ms
-const LOCATION_STORAGE_KEY = "igcampanhas:last-location-update";
+const LOCATION_STORAGE_KEY = "zpErp:last-location-update";
 
 // Função para gerar um ID único para cada requisição
 function generateRequestId() {
@@ -98,7 +98,7 @@ Axios.interceptors.request.use(
     const isLocationUpdateRequest = config.url?.includes(
       "atualizar-localizacao"
     );
-    const hasToken = localStorage.getItem("igcampanhas:token");
+    const hasToken = localStorage.getItem("zpErp:token");
     const lastUpdate = parseInt(
       localStorage.getItem(LOCATION_STORAGE_KEY) || "0"
     );
@@ -226,11 +226,11 @@ Axios.interceptors.response.use(
         "Erro ao processar requisição. Tente novamente!"
       );
     } else if (error.response.status === 401) {
-      localStorage.removeItem("igcampanhas:token");
-      localStorage.removeItem("igcampanhas:nome");
-      localStorage.removeItem("igcampanhas:email");
-      localStorage.removeItem("igcampanhas:paginas-usuario");
-      localStorage.removeItem("igcampanhas:last-location-update");
+      localStorage.removeItem("zpErp:token");
+      localStorage.removeItem("zpErp:nome");
+      localStorage.removeItem("zpErp:email");
+      localStorage.removeItem("zpErp:paginas-usuario");
+      localStorage.removeItem("zpErp:last-location-update");
 
       if (
         error.response.config &&

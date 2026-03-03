@@ -1,7 +1,7 @@
 import { Ip } from "@common/decorators/ip.decorator";
 import { Public } from "@common/decorators/public.decorator";
 import { AuthenticationService } from "@modules/authentication/authentication.service";
-import { Body, Controller, Get, Headers, Post } from "@nestjs/common";
+import { Body, Controller, Headers, Post } from "@nestjs/common";
 import {
   AutenticacaoAlterarSenhaDto,
   AutenticacaoLoginDto,

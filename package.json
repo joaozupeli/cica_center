@@ -1,7 +1,7 @@
 {
-  "name": "igcampanhas",
+  "name": "zpErp",
   "version": "1.0.0",
-  "description": "Sistema IGCAMPANHAS",
+  "description": "Sistema zpErp",
   "main": "index.js",
   "scripts": {
     "clean-client": "cd client && yarn clean",

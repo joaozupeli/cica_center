@@ -11,18 +11,6 @@ importers:
       '@mdi/font':
         specifier: ^7.4.47
         version: 7.4.47
-      '@tiig/cnpj':
-        specifier: ^1.0.1
-        version: 1.0.1
-      '@tiig/cpf':
-        specifier: ^1.0.3
-        version: 1.0.3
-      '@tiig/moeda':
-        specifier: ^1.0.14
-        version: 1.0.14
-      '@tiig/v-uppercase':
-        specifier: ^1.0.9
-        version: 1.0.9
       '@vueuse/core':
         specifier: ^10.11.0
         version: 10.11.1(vue@3.5.25(typescript@5.4.5))
@@ -694,18 +682,6 @@ packages:
     engines: {node: '>= 14.18'}
     peerDependencies:
       '@svgdotjs/svg.js': ^3.2.4
-
-  '@tiig/cnpj@1.0.1':
-    resolution: {integrity: sha512-KRO79D0fxRe7JLxA8CmT+I6r2u1ifSSQ8aMV74Pdyt6IEzN555fVnJOPU3y98f7ALxIczA5JM/3Y8kZKJi4hLw==, tarball: https://npm.pkg.github.com/download/@tiig/cnpj/1.0.1/77d82600809087129997bdf51e107356b4bf2fde}
-
-  '@tiig/cpf@1.0.3':
-    resolution: {integrity: sha512-EihRtaOiiBsHgB2aj9qizWwhul09vMUpohgVsfN3g5pts15TntTKeHlsRTT+WJ5D6FFFshU2CZry9qKBGUDPTA==, tarball: https://npm.pkg.github.com/download/@tiig/cpf/1.0.3/903651c981dda303a263e8460d6213a4cf2d8a5d}
-
-  '@tiig/moeda@1.0.14':
-    resolution: {integrity: sha512-S27SML8iiRkFI8lPhCoJ6mMByCsi7vFOShhCV4PFC1P1+v+RAHgZQasF/f4NBxAVgj+RN+pf30IvCP3QC5aIUg==, tarball: https://npm.pkg.github.com/download/@tiig/moeda/1.0.14/044fab5955dec63a362fc087c201a1f3b5e8614c}
-
-  '@tiig/v-uppercase@1.0.9':
-    resolution: {integrity: sha512-PSonwsd6CNZbXMql9Fs76MHLiM6YsfYk5zzuFL5Yrs3oPXk5apvsb70hgYdEKJxtBmVf1ynA8wd1NsO2XKkTUA==, tarball: https://npm.pkg.github.com/download/@tiig/v-uppercase/1.0.9/05484531a173a86b89b0394c6d9a9ed6f4a2b701}
 
   '@tsconfig/node20@20.1.8':
     resolution: {integrity: sha512-Em+IdPfByIzWRRpqWL4Z7ArLHZGxmc36BxE3jCz9nBFSm+5aLaPMZyjwu4yetvyKXeogWcxik4L1jB5JTWfw7A==}
@@ -2578,16 +2554,6 @@ snapshots:
   '@svgdotjs/svg.select.js@4.0.3(@svgdotjs/svg.js@3.2.5)':
     dependencies:
       '@svgdotjs/svg.js': 3.2.5
-
-  '@tiig/cnpj@1.0.1': {}
-
-  '@tiig/cpf@1.0.3': {}
-
-  '@tiig/moeda@1.0.14':
-    dependencies:
-      numero-por-extenso: 1.0.8
-
-  '@tiig/v-uppercase@1.0.9': {}
 
   '@tsconfig/node20@20.1.8': {}
 

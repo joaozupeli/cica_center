@@ -114,12 +114,12 @@ router.beforeEach((to, from, next) => {
   
   // Verificar autenticação
   if (to.matched.some((record) => record.meta.requiresAuth)) {
-    const token = localStorage.getItem("zperp:token");
-    if (!token) {
-      toast.error("Por favor, faça login para acessar esta página.");
-      next({ path: "/auth" });
-      return;
-    }
+    // const token = localStorage.getItem("zperp:token");
+    // if (!token) {
+    //   toast.error("Por favor, faça login para acessar esta página.");
+    //   next({ path: "/auth" });
+    //   return;
+    // }
     
     // Verificar permissão de acesso por perfil
     const perfisPermitidos = to.meta.perfis as number[] | undefined;

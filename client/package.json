@@ -1,5 +1,5 @@
 {
-  "name": "igcampanhas-client",
+  "name": "zpErp-client",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -15,10 +15,6 @@
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",
-    "@tiig/cnpj": "^1.0.1",
-    "@tiig/cpf": "^1.0.3",
-    "@tiig/moeda": "^1.0.14",
-    "@tiig/v-uppercase": "^1.0.9",
     "@vueuse/core": "^10.11.0",
     "apexcharts": "^5.3.6",
     "axios": "^1.7.2",

@@ -2,7 +2,6 @@
 // #region Import libs
 import { validMask } from "@/plugins/maska";
 import router from "@/router";
-import moeda from "@tiig/moeda";
 import dayjs from "@/plugins/dayjs";
 import * as ExcelJS from "exceljs";
 import { computed, onMounted, ref, watch } from "vue";
