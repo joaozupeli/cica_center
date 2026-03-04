@@ -64,23 +64,23 @@ const optionsModal: modalType = reactive({
 });
 
 async function handleLogin() {
-//   const { valid } = await form.value.validate();
-//   if (valid) {
-//     await appStore.setLoading(true);
-//     const res = await appStore.login({
-//       login: formLogin.login ? formLogin.login.toUpperCase() : undefined,
-//       senha: formLogin.password ? hashByCrypto(formLogin.password) : undefined,
-//     });
-//     if (res && !res.erro && res.senhaVencida) {
-//       modalAlterarSenha.value = true;
-//       formLoginModal.login = formLogin.login;
-//     } else if (res && !res.erro && !res.senhaVencida && res.status !== 500) {
+  const { valid } = await form.value.validate();
+  if (valid) {
+    await appStore.setLoading(true);
+    const res = await appStore.login({
+      login: formLogin.login ? formLogin.login.toUpperCase() : undefined,
+      senha: formLogin.password ? hashByCrypto(formLogin.password) : undefined,
+    });
+    if (res && !res.erro && res.senhaVencida) {
+      modalAlterarSenha.value = true;
+      formLoginModal.login = formLogin.login;
+    } else if (res && !res.erro && !res.senhaVencida && res.status !== 500) {
       router.push("/");
-//     } else if (res?.erro) {
-//       formLogin.password = null;
-//     }
-//     await appStore.setLoading(false);
-//   }
+    } else if (res?.erro) {
+      formLogin.password = null;
+    }
+    await appStore.setLoading(false);
+  }
 }
 
 async function handleAlterPassword() {

@@ -9,10 +9,6 @@ import {
 } from "sequelize-typescript";
 import PerfilModel from "@models/perfil.model";
 
-export enum UsuarioAtivo {
-  Sim = 1,
-  Nao = 0,
-}
 @Table({ tableName: "usuario" })
 export default class UsuarioModel extends ModelBase {
   @AllowNull(true)
@@ -26,10 +22,6 @@ export default class UsuarioModel extends ModelBase {
   @AllowNull(true)
   @Column(DataType.STRING(100))
   senha: string;
-
-  @AllowNull(true)
-  @Column(DataType.INTEGER)
-  ativo: UsuarioAtivo;
 
   @AllowNull(false)
   @Column(DataType.INTEGER)

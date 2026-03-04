@@ -1,4 +1,3 @@
-import Usuario, { UsuarioAtivo } from "@models/usuario.model";
 import {
   AutenticacaoAlterarSenhaDto,
   AutenticacaoLoginDto,
@@ -8,6 +7,7 @@ import { JwtService } from "@nestjs/jwt";
 import { InjectModel } from "@nestjs/sequelize";
 import * as CryptoJS from "crypto-js";
 import dayjs from "dayjs";
+import Usuario from "@models/usuario.model";
 
 @Injectable()
 export class AuthenticationService {
@@ -27,16 +27,11 @@ export class AuthenticationService {
     const usuario = await this.usuarioModel.findOne({
       where: {
         login: autenticacaoLoginDto.login,
-      },
-      order: [["ativo", "DESC"]],
+      }
     });
 
     if (!usuario) {
       throw new Error(msgGenerica);
-    }
-
-    if (usuario.ativo !== UsuarioAtivo.Sim) {
-      throw new Error("Usuario não encontrato. Entre em contato com a T.I");
     }
 
     if (autenticacaoLoginDto.senha !== usuario.senha) {
@@ -57,7 +52,6 @@ export class AuthenticationService {
       login: usuario.login,
       sub: {
         id: usuario.id,
-        ativo: usuario.ativo,
         login: usuario.login,
         nome: usuario.nome,
       },
@@ -92,15 +86,10 @@ export class AuthenticationService {
     const usuarioDb = await this.usuarioModel.findOne({
       where: {
         login: payload.login,
-      },
-      order: [["ativo", "DESC"]],
+      }
     });
 
     if (!usuarioDb) {
-      throw new Error(msgGenerica);
-    }
-
-    if (usuarioDb.ativo !== UsuarioAtivo.Sim) {
       throw new Error(msgGenerica);
     }
 

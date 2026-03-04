@@ -12,9 +12,10 @@ export const ZP_ERP_DB_CONNECTION = ZP_ERP_DB_CONNECTION_NAME + 'Connection';
       useFactory: () => ({
         dialect: 'mariadb',
         host: process.env.DB_HOST,
-        username: process.env.DB_USERNAME,
-        password: process.env.DB_PASSWORD,
-        database: process.env.DB_DATABASE,
+        port: parseInt(process.env.DB_PORT || '3306'),
+        username: process.env.DB_USER,
+        password: process.env.DB_PASS,
+        database: process.env.DB_NAME,
         timezone: process.env.APP_TIMEZONE,
         logging: process.env.NODE_ENV !== 'production' ? console.log : false,
         models: [join(__dirname, '../../models/*.model{.ts,.js}')],
