@@ -549,7 +549,7 @@ ajustarSortVazio();
 </script>
 
 <template>
-  <v-card dense>
+  <v-card dense color="grey-darken-4" elevation="0">
     <div v-resize="newCalculaTableHeigth">
       <v-data-table
         ref="tabela"
@@ -1105,23 +1105,23 @@ ajustarSortVazio();
           <div
             class="d-flex justify-center align-center align-self-center py-4"
           >
-            <v-chip
-              class="bg-grey-lighten-3 text-primary py-3"
-              label
-              :size="options?.mensagemSemRegistros ? 'auto' : '210px'"
-              width="auto"
-            >
-              <v-icon left size="24" class="mr-3 ml-4">
-                mdi-alert-circle
-              </v-icon>
-              <span
-                v-if="options?.mensagemSemRegistros"
-                class="font-weight-medium mr-5"
-                >{{ options?.mensagemSemRegistros }}</span
+              <v-chip
+                class="bg-grey-darken-3 text-grey-lighten-1 py-3"
+                label
+                :size="options?.mensagemSemRegistros ? 'auto' : '210px'"
+                width="auto"
               >
-              <span v-else class="text-h6 font-weight-medium mr-5">
-                Nenhum Registro!</span
-              >
+                <v-icon left size="24" class="mr-3 ml-4" color="grey">
+                  mdi-alert-circle
+                </v-icon>
+                <span
+                  v-if="options?.mensagemSemRegistros"
+                  class="font-weight-medium mr-5"
+                  >{{ options?.mensagemSemRegistros }}</span
+                >
+                <span v-else class="text-h6 font-weight-medium mr-5">
+                  Nenhum Registro!</span
+                >
             </v-chip>
           </div>
         </template>
@@ -1165,7 +1165,7 @@ ajustarSortVazio();
               style="min-height: 44px"
             >
               <div class="d-flex align-center">
-                <v-icon color="#086035" size="18" class="mr-2"
+                <v-icon color="grey-lighten-1" size="18" class="mr-2"
                   >mdi-table</v-icon
                 >
                 <span class="table-title-modern">{{
@@ -1312,20 +1312,20 @@ ajustarSortVazio();
             flat
             height="30"
             class="py-0 my-0"
-            color="white"
+            color="grey-darken-4"
           >
-            <span class="font-weigth-bold ml-2"
+            <span class="font-weigth-bold ml-2 text-grey-lighten-1"
               >Registros:
-              <b>{{ moeda.format(filteredItems.length || 0, 0) }}</b></span
+              <b>{{ (filteredItems.length || 0).toLocaleString('pt-BR') }}</b></span
             >
             <span v-if="selecionadosMostrar" class="ml-1">
               &nbsp; | &nbsp; Selecionados:
-              <b>{{ moeda.format(options?.selecionados?.length || 0, 0) }}</b>
+              <b>{{ (options?.selecionados?.length || 0).toLocaleString('pt-BR') }}</b>
             </span>
 
             <v-spacer />
 
-            <div class="d-flex flex-row align-center ml-3 mr-2">
+            <div class="d-flex flex-row align-center ml-3 mr-2 text-grey-lighten-1">
               Por página
 
               <v-select
@@ -1340,7 +1340,7 @@ ajustarSortVazio();
               />
               <div class="px-3">
                 <v-btn
-                  :color="isDark ? '' : 'primary darken-1'"
+                  color="grey-lighten-1"
                   :disabled="desabilitarPaginaAnterior()"
                   icon
                   width="35"
@@ -1349,7 +1349,7 @@ ajustarSortVazio();
                   <v-icon class="mx-0"> mdi-chevron-double-left </v-icon>
                 </v-btn>
                 <v-btn
-                  :color="isDark ? '' : 'primary darken-1'"
+                  color="grey-lighten-1"
                   :disabled="desabilitarPaginaAnterior()"
                   icon
                   width="35"
@@ -1357,13 +1357,13 @@ ajustarSortVazio();
                 >
                   <v-icon class="mx-0"> mdi-chevron-left </v-icon>
                 </v-btn>
-                <span>
+                <span class="text-grey-lighten-1">
                   {{ page }}&nbsp;-&nbsp;{{
                     Math.ceil(Number(filteredItems.length || 1) / itemsPerPage)
                   }}
                 </span>
                 <v-btn
-                  :color="isDark ? '' : 'primary darken-1'"
+                  color="grey-lighten-1"
                   :disabled="desabilitarPaginaPosterior()"
                   icon
                   width="35"
@@ -1377,7 +1377,7 @@ ajustarSortVazio();
                   <v-icon class="mx-0"> mdi-chevron-right </v-icon>
                 </v-btn>
                 <v-btn
-                  :color="isDark ? '' : 'primary darken-1'"
+                  color="grey-lighten-1"
                   :disabled="desabilitarPaginaPosterior()"
                   icon
                   width="35"
@@ -1400,19 +1400,14 @@ ajustarSortVazio();
 </template>
 
 <style lang="scss" scoped>
-/* ========================================
-   DESIGN MODERNO E MINIMALISTA - ESTILO PRIMEVUE
-   ======================================== */
-
-/* Tabela Principal - Clean e Moderna */
 :deep(.v-data-table) {
   line-height: 1.5;
   max-width: 100%;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
   white-space: nowrap !important;
-  border: 1px solid #e0e0e0;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background-color: #212121;
 }
 
 :deep(.v-data-table > .v-data-table__wrapper > table) {
@@ -1421,10 +1416,9 @@ ajustarSortVazio();
   border-collapse: separate;
 }
 
-/* Header Moderno - Fundo Suave */
 :deep(thead) {
-  background: linear-gradient(180deg, #fafafa 0%, #f5f5f5 100%);
-  border-bottom: 2px solid #e0e0e0;
+  background: #2a2a2a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 :deep(th) {
@@ -1432,20 +1426,19 @@ ajustarSortVazio();
   height: 32px !important;
   width: auto;
   font-weight: 600 !important;
-  color: #424242 !important;
+  color: #9e9e9e !important;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  border-bottom: 2px solid #e0e0e0 !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
   background: transparent;
 }
 
 :deep(th span) {
   font-size: 0.75rem !important;
   font-weight: 600 !important;
-  color: #424242;
+  color: #9e9e9e;
 }
 
-/* Células - Espaçamento e Tipografia */
 :deep(td) {
   padding: 0px 8px !important;
   height: 32px !important;
@@ -1454,31 +1447,27 @@ ajustarSortVazio();
   font-family:
     -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, sans-serif !important;
-  color: #424242;
-  border-bottom: 1px solid #e8e8e8 !important;
+  color: #e0e0e0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04) !important;
   border-left: none !important;
   border-right: none !important;
   transition: background-color 0.2s ease;
 }
 
-/* Linhas - Alternadas com Cor Mais Visível */
 :deep(tbody tr) {
   cursor: pointer !important;
   transition: all 0.2s ease;
-  background-color: #ffffff;
+  background-color: #212121;
 }
 
 :deep(tbody tr:nth-child(even)) {
-  background-color: #f7f7f7;
+  background-color: #1c1c1c;
 }
 
-/* Hover Suave e Elegante */
 :deep(tbody > tr:hover) {
-  background-color: #f0f7f4 !important;
-  box-shadow: inset 0 0 0 1px rgba(8, 96, 53, 0.1);
+  background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
-/* Linha Selecionada - Verde Suave */
 :deep(
   .v-data-table__tr:has(
     .input-checkbox-data-table
@@ -1487,16 +1476,14 @@ ajustarSortVazio();
       > input[type="checkbox"]:checked
   )
 ) {
-  background: #e8f5e9 !important;
-  border-left: 3px solid #086035;
+  background: rgba(76, 175, 80, 0.12) !important;
+  border-left: 3px solid #4caf50;
 }
 
-/* Última linha sem borda */
 :deep(tbody tr:last-child td) {
   border-bottom: none !important;
 }
 
-/* Botões de Ação Compactos */
 :deep(.botao-acao-tabela) {
   height: 32px !important;
   width: 32px !important;
@@ -1509,10 +1496,9 @@ ajustarSortVazio();
   border-radius: 6px;
 }
 
-/* Header Moderno da Tabela - Estilo Card */
 .table-header-modern {
-  background: linear-gradient(180deg, #fafafa, #f8f8f8);
-  border-bottom: 1px solid #e0e0e0;
+  background: #2a2a2a;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   min-height: 44px;
@@ -1521,7 +1507,7 @@ ajustarSortVazio();
 .table-title-modern {
   font-size: 0.75rem;
   font-weight: 600;
-  color: #086035;
+  color: #e0e0e0;
   letter-spacing: 0.3px;
   text-transform: uppercase;
 }
@@ -1531,17 +1517,12 @@ ajustarSortVazio();
   height: 32px !important;
 }
 
-:deep(.v-data-table) {
-  white-space: nowrap !important;
-}
-
 :deep(.v-chip-status) {
   width: 100%;
   display: flex !important;
   justify-content: center !important;
 }
 
-/* Chips de status mais compactos */
 :deep(.chip-status-compact) {
   height: 20px !important;
   font-size: 0.688rem !important;
@@ -1612,5 +1593,13 @@ ajustarSortVazio();
 :deep(.input-edit-select > .v-input__control > .v-field) {
   --v-field-input-padding-top: 0;
   --v-field-input-padding-bottom: 0;
+}
+
+:deep(.v-toolbar) {
+  color: #bdbdbd !important;
+}
+
+:deep(.v-select) {
+  color: #e0e0e0;
 }
 </style>

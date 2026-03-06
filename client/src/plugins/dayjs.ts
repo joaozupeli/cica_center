@@ -5,6 +5,7 @@ import duration from "dayjs/plugin/duration";
 import IsoWeek from "dayjs/plugin/isoWeek";
 import isSameOrAfter from "dayjs/plugin/isSameOrAfter";
 import isSameOrBefore from "dayjs/plugin/isSameOrBefore";
+import isBetween from "dayjs/plugin/isBetween";
 import relativeTime from "dayjs/plugin/relativeTime";
 import updateLocale from "dayjs/plugin/updateLocale";
 import Weekday from "dayjs/plugin/weekday";
@@ -14,6 +15,7 @@ dayjs.extend(duration);
 dayjs.extend(relativeTime);
 dayjs.extend(isSameOrAfter);
 dayjs.extend(isSameOrBefore);
+dayjs.extend(isBetween);
 dayjs.extend(Weekday);
 dayjs.extend(IsoWeek);
 

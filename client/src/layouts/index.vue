@@ -22,19 +22,12 @@ const nome = localStorage.getItem("zperp:nome")
   : "";
 
 const menuItemsConfig = [
-  { title: "Dashboard", icon: "mdi-view-dashboard", to: "/dashboard", perfis: [] },
-  { title: "Financeiro", icon: "mdi-cash-multiple", to: "/financeiro", perfis: [] },
-  { title: "Tarefas", icon: "mdi-clipboard-check-outline", to: "/tarefas", perfis: [] },
-  { title: "Clientes", icon: "mdi-account-group", to: "/clientes", perfis: [] },
-  { title: "Produtos", icon: "mdi-package-variant-closed", to: "/produtos", perfis: [] },
-  { title: "Vendas", icon: "mdi-cart-outline", to: "/vendas", perfis: [] },
-  { title: "Relatórios", icon: "mdi-chart-bar", to: "/relatorios", perfis: [] },
+  { title: "Meus Gastos", icon: "mdi-cash-multiple", to: "/gastos", perfis: [] },
+  { title: "Gastos Recorrentes", icon: "mdi-calendar-repeat", to: "/gastos-recorrentes", perfis: [] },
 ];
 
 const configItemsConfig = [
-  { title: "Usuários", icon: "mdi-account-cog", to: "/configuracoes/usuarios", perfis: [1] },
-  { title: "Empresa", icon: "mdi-domain", to: "/configuracoes/empresa", perfis: [1] },
-  { title: "Sistema", icon: "mdi-cog", to: "/configuracoes", perfis: [1] },
+  { title: "Usuários", icon: "mdi-account-cog", to: "/usuarios", perfis: [] },
 ];
 
 const menuItems = computed(() => {
@@ -82,9 +75,9 @@ onMounted(async () => {
         <v-app-bar-nav-icon color="white" size="small" @click="drawer = !drawer" />
       </template>
 
-      <div class="d-flex align-center" style="cursor: pointer" @click="goToRoute('/dashboard')">
-        <v-icon size="20" color="white" class="mr-2">mdi-cogs</v-icon>
-        <span class="app-title d-none d-sm-block">zpErp</span>
+      <div class="d-flex align-center" style="cursor: pointer" @click="goToRoute('/gastos')">
+        <v-icon size="20" color="white" class="mr-2">mdi-wallet</v-icon>
+        <span class="app-title d-none d-sm-block">Controle Financeiro</span>
       </div>
 
       <v-spacer />
@@ -150,32 +143,33 @@ onMounted(async () => {
           </v-list-item-title>
         </v-list-item>
 
-        <v-divider color="grey-darken-3" class="my-2" />
+        <template v-if="configItems.length > 0">
+          <div class="menu-section-title mt-2">SISTEMA</div>
 
-        <div class="menu-section-title">CONFIG</div>
-        
-        <v-list-item
-          v-for="item in configItems"
-          :key="item.to"
-          :to="item.to"
-          :active="isActiveRoute(item.to)"
-          :class="{ 'sidebar-item-active': isActiveRoute(item.to) }"
-          class="sidebar-item mb-1"
-          rounded="lg"
-          height="36"
-        >
-          <template #prepend>
-            <v-icon :color="isActiveRoute(item.to) ? 'white' : 'grey'" size="18">
-              {{ item.icon }}
-            </v-icon>
-          </template>
-          <v-list-item-title
-            class="text-caption"
-            :class="isActiveRoute(item.to) ? 'text-white' : 'text-grey-lighten-1'"
+          <v-list-item
+            v-for="item in configItems"
+            :key="item.to"
+            :to="item.to"
+            :active="isActiveRoute(item.to)"
+            :class="{ 'sidebar-item-active': isActiveRoute(item.to) }"
+            class="sidebar-item mb-1"
+            rounded="lg"
+            height="36"
           >
-            {{ item.title }}
-          </v-list-item-title>
-        </v-list-item>
+            <template #prepend>
+              <v-icon :color="isActiveRoute(item.to) ? 'white' : 'grey'" size="18">
+                {{ item.icon }}
+              </v-icon>
+            </template>
+            <v-list-item-title
+              class="text-caption"
+              :class="isActiveRoute(item.to) ? 'text-white' : 'text-grey-lighten-1'"
+            >
+              {{ item.title }}
+            </v-list-item-title>
+          </v-list-item>
+        </template>
+
       </v-list>
 
       <template #append>

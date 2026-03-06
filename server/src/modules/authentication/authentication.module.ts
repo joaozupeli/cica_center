@@ -15,7 +15,7 @@ import { AuthenticationService } from './authentication.service';
     JwtModule.registerAsync({
       useFactory: () => ({
         secret: process.env.APP_SECRET,
-        signOptions: { expiresIn: `${process.env.APP_EXPIRE_TOKEN}s` },
+        signOptions: { expiresIn: `${process.env.APP_EXPIRE_TOKEN}` },
       }),
     }),
     SequelizeModule.forFeature([Usuario]),
