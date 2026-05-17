@@ -11,40 +11,67 @@ import "vuetify/styles";
 import "@mdi/font/css/materialdesignicons.css";
 import App from "./App.vue";
 import router from "./router";
-import { vMaska } from "maska/vue";
-import vMoeda from "@/plugins/v-moeda";
 
 const vuetify = createVuetify({
   icons: { defaultSet: "mdi" },
   components,
   directives,
   theme: {
-    defaultTheme: "light",
+    defaultTheme: "cica",
     themes: {
-      light: {
+      cica: {
+        dark: true,
         colors: {
-          primary: "#086035", // Verde da marca
-          secondary: "#4caf50",
-          accent: "#8bc34a",
-          error: "#f44336",
-          warning: "#ff9800",
-          info: "#2196f3",
-          success: "#4caf50",
+          background: "#0A0A0A",
+          surface: "#141414",
+          "surface-bright": "#1C1C1C",
+          "surface-variant": "#1C1C1C",
+          "on-surface-variant": "#FFFFFF",
+          primary: "#CC0000",
+          "primary-darken-1": "#A30000",
+          secondary: "#1C1C1C",
+          accent: "#CC0000",
+          error: "#FF4444",
+          warning: "#FFB020",
+          info: "#2196F3",
+          success: "#00C853",
+          "on-primary": "#FFFFFF",
+          "on-secondary": "#FFFFFF",
+          "on-background": "#FFFFFF",
+          "on-surface": "#FFFFFF",
+        },
+        variables: {
+          "border-color": "#2A2A2A",
+          "border-opacity": 1,
         },
       },
+    },
+  },
+  defaults: {
+    VBtn: {
+      style: "text-transform: none; letter-spacing: 0.02em;",
+    },
+    VCard: {
+      color: "surface",
+    },
+    VTextField: {
+      variant: "outlined",
+      density: "comfortable",
+    },
+    VSelect: {
+      variant: "outlined",
+      density: "comfortable",
     },
   },
   locale: { locale: "pt", fallback: "pt", messages: { pt } },
 });
 
 const app = createApp(App);
-app.directive("maska", vMaska);
-app.use(vMoeda);
 app.use(createPinia());
 app.use(vuetify);
 app.use(router);
 app.use(Toast, {
   position: POSITION.TOP_RIGHT,
-  timeout: 5000,
+  timeout: 4000,
 });
 app.mount("#app");
