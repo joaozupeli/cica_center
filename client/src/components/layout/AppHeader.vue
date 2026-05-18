@@ -43,8 +43,11 @@ function goAccount() {
   >
     <v-container class="d-flex align-center pa-0" max-width="1440">
       <router-link to="/" class="logo">
-        <span class="logo-cica">CICA</span>
-        <span class="logo-center">CENTER</span>
+        <img
+          src="/cica_center_logo.png"
+          alt="Cica Center"
+          class="logo-img"
+        />
       </router-link>
 
       <nav class="header-nav d-none d-md-flex">
@@ -174,19 +177,18 @@ function goAccount() {
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-family: "Rajdhani", sans-serif;
-  font-weight: 700;
-  font-size: 24px;
-  letter-spacing: 0.08em;
   margin-right: 32px;
 }
 
-.logo-cica {
-  color: var(--cica-red);
+.logo-img {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  transition: opacity 0.2s ease;
 }
-.logo-center {
-  color: var(--cica-white);
+
+.logo:hover .logo-img {
+  opacity: 0.85;
 }
 
 .header-nav {

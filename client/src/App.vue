@@ -18,7 +18,7 @@ import AuthGuardModal from "@/components/shared/AuthGuardModal.vue";
 
 <style scoped>
 .cica-main {
-  background-color: #0a0a0a;
+  background-color: #000000;
   min-height: calc(100vh - 64px);
 }
 </style>

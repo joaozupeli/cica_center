@@ -1,31 +1,63 @@
 <script setup lang="ts">
-import { onMounted, computed } from "vue";
+import { onMounted, onUnmounted, computed, ref } from "vue";
 import { useProductsStore } from "@/stores/products";
 import ProductCard from "@/components/products/ProductCard.vue";
 
 const products = useProductsStore();
-
 const destaques = computed(() => products.list.slice(0, 4));
+
+const observedEls = ref<Element[]>([]);
+let observer: IntersectionObserver | null = null;
+
+function setupScrollReveal() {
+  observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("revealed");
+          observer?.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.15 },
+  );
+
+  const els = document.querySelectorAll(".scroll-reveal");
+  els.forEach((el) => {
+    observedEls.value.push(el);
+    observer!.observe(el);
+  });
+}
 
 onMounted(() => {
   products.fetchList({ page: 1, perPage: 4 });
+  setupScrollReveal();
+});
+
+onUnmounted(() => {
+  observer?.disconnect();
 });
 </script>
 
 <template>
   <div class="home">
     <section class="hero">
+      <div class="hero-image fade-in-up-delay-1">
+         <img
+           src="/cica_center_banner.png"
+           alt="Cica Center — Som, Rodas, Pneus e Acessórios"
+         />
+       </div>
       <div class="hero-content">
-        <span class="hero-eyebrow">Cica Center</span>
-        <h1 class="hero-title">
+        <h1 class="hero-title fade-in-up-delay-1">
           Rodas que <span class="text-red">transformam</span><br />
           o seu carro.
         </h1>
-        <p class="hero-text">
+        <p class="hero-text fade-in-up-delay-2">
           A linha completa das melhores rodas automotivas do Brasil.
           Performance, estilo e qualidade em um só lugar.
         </p>
-        <div class="hero-actions">
+        <div class="hero-actions fade-in-up-delay-3">
           <v-btn
             color="primary"
             size="large"
@@ -49,16 +81,15 @@ onMounted(() => {
           </v-btn>
         </div>
       </div>
-
-      <div class="hero-image">
+      <!-- <div class="hero-image fade-in-up-delay-1">
         <img
-          src="https://images.unsplash.com/photo-1626668893632-6f3a4466d109?w=1200&auto=format&fit=crop&q=80"
-          alt="Roda esportiva"
-        />
-      </div>
+          src="/cica_center_banner.png"
+          alt="Cica Center — Som, Rodas, Pneus e Acessórios"
+        /> -->
+      <!-- </div> -->
     </section>
 
-    <section class="features">
+    <section class="features scroll-reveal">
       <v-container max-width="1440">
         <div class="features-grid">
           <div class="feature">
@@ -93,7 +124,7 @@ onMounted(() => {
       </v-container>
     </section>
 
-    <section id="destaques" class="destaques">
+    <section id="destaques" class="destaques scroll-reveal">
       <v-container max-width="1440">
         <header class="section-header">
           <div>
@@ -127,6 +158,17 @@ onMounted(() => {
   background-color: var(--cica-black);
 }
 
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.scroll-reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -143,6 +185,16 @@ onMounted(() => {
     grid-template-columns: 1fr;
     padding: 32px 24px;
     gap: 32px;
+  }
+}
+
+.hero-content {
+  padding-left: 48px;
+}
+
+@media (max-width: 900px) {
+  .hero-content {
+    padding-left: 0;
   }
 }
 
@@ -192,16 +244,16 @@ onMounted(() => {
 
 .hero-image {
   position: relative;
-  aspect-ratio: 1;
   overflow: hidden;
-  border: 1px solid var(--cica-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: grayscale(0.2) contrast(1.05);
+  width: 115%;
+  height: auto;
+  object-fit: contain;
 }
 
 .features {

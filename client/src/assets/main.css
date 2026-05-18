@@ -1,5 +1,5 @@
 :root {
-  --cica-black: #0a0a0a;
+  --cica-black: #000000;
   --cica-black-soft: #141414;
   --cica-black-elevated: #1c1c1c;
   --cica-red: #cc0000;
@@ -13,6 +13,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 html,
 body {
   margin: 0;
@@ -23,6 +27,33 @@ body {
   font-family: "Inter", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease both;
+}
+
+.fade-in-up-delay-1 {
+  animation: fadeInUp 0.6s ease 0.1s both;
+}
+
+.fade-in-up-delay-2 {
+  animation: fadeInUp 0.6s ease 0.2s both;
+}
+
+.fade-in-up-delay-3 {
+  animation: fadeInUp 0.6s ease 0.3s both;
 }
 
 h1,
@@ -59,6 +90,18 @@ a {
   letter-spacing: 0.02em;
 }
 
+.v-btn {
+  transition: all 0.25s ease !important;
+}
+
+.v-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.v-card:hover {
+  transform: translateY(-4px);
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
@@ -69,6 +112,7 @@ a {
 ::-webkit-scrollbar-thumb {
   background: var(--cica-border);
   border-radius: 4px;
+  transition: background 0.2s ease;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--cica-red);

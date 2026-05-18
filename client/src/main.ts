@@ -22,7 +22,7 @@ const vuetify = createVuetify({
       cica: {
         dark: true,
         colors: {
-          background: "#0A0A0A",
+          background: "#000000",
           surface: "#141414",
           "surface-bright": "#1C1C1C",
           "surface-variant": "#1C1C1C",
