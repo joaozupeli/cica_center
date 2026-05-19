@@ -1,20 +1,15 @@
 {
-  "name": "igcampanhas",
+  "name": "cica-center",
   "version": "1.0.0",
-  "description": "Sistema IGCAMPANHAS",
+  "description": "Cica Center - Som, Rodas, Pneus e Acessórios",
   "main": "index.js",
   "scripts": {
-    "clean-client": "cd client && yarn clean",
-    "clean-server": "cd server && yarn clean",
-    "format": "yarn format-client && yarn format-server",
-    "format-client": "cd client && yarn format",
-    "format-server": "cd server && yarn format",
-    "lint": "yarn lint-client && yarn lint-server",
-    "lint-client": "cd client && yarn lint",
-    "lint-server": "cd server && yarn lint",
-    "build": "yarn build-client && yarn build-server",
-    "build-client": "cd client && yarn build",
-    "build-server": "cd server && yarn build"
+    "build": "cd client && pnpm install && pnpm run build",
+    "build-client": "cd client && pnpm install && pnpm run build",
+    "build-server": "cd server && pnpm install && pnpm run build",
+    "dev": "cd client && pnpm run dev",
+    "lint": "cd client && pnpm run lint",
+    "format": "cd client && pnpm run format"
   },
   "author": "",
   "license": "ISC",
