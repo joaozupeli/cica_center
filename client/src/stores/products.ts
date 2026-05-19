@@ -14,7 +14,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "preto",
     preco: 1890,
     imagem:
-      "https://images.unsplash.com/photo-1611016186353-9af58c69a533?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1618764283656-4f2562385a19?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["Volkswagen Gol", "Volkswagen Polo", "Volkswagen Voyage"],
     aro: 17,
     estoque: 12,
@@ -29,7 +29,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "prata",
     preco: 3490,
     imagem:
-      "https://images.unsplash.com/photo-1626668893632-6f3a4466d109?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1578682169493-97be94d670be?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["Honda Civic", "Toyota Corolla", "Nissan Sentra"],
     aro: 18,
     estoque: 6,
@@ -44,7 +44,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "preto",
     preco: 2390,
     imagem:
-      "https://images.unsplash.com/photo-1635775017492-1eb935a082a2?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1657650067496-fe55ca98f802?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["Subaru Impreza", "Volkswagen Gol", "Ford Fiesta"],
     aro: 17,
     estoque: 8,
@@ -58,7 +58,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "bronze",
     preco: 2890,
     imagem:
-      "https://images.unsplash.com/photo-1577593980495-7c376a563ace?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1752560923593-836995b183d4?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["Honda Civic", "Subaru WRX", "Hyundai HB20"],
     aro: 18,
     estoque: 4,
@@ -72,7 +72,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "prata",
     preco: 2190,
     imagem:
-      "https://images.unsplash.com/photo-1626042144024-f4b29f9c5b3e?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1608479746923-7e17632a9799?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["Honda Fit", "Ford Ka", "Volkswagen Up"],
     aro: 17,
     estoque: 10,
@@ -86,7 +86,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "preto",
     preco: 4290,
     imagem:
-      "https://images.unsplash.com/photo-1605713288610-00c1c80c4d3a?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1768341396286-a6322d588111?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["Audi A3", "Volkswagen Jetta", "Volkswagen Golf"],
     aro: 19,
     estoque: 3,
@@ -100,7 +100,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "branco",
     preco: 2790,
     imagem:
-      "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1761942943505-f134f851e88e?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["Volkswagen Polo", "Volkswagen Gol", "Fiat Punto"],
     aro: 17,
     estoque: 7,
@@ -114,7 +114,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "preto",
     preco: 3690,
     imagem:
-      "https://images.unsplash.com/photo-1611821064736-4a4c5f6f0a8e?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1760510926243-ad1da20f31e2?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["Nissan 350Z", "Honda S2000", "Toyota Corolla"],
     aro: 18,
     estoque: 5,
@@ -128,7 +128,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "bronze",
     preco: 2590,
     imagem:
-      "https://images.unsplash.com/photo-1612825173281-9a193378527e?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1757528495083-a877a0629464?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["Honda Civic", "Mazda MX-5", "Ford Ka"],
     aro: 17,
     estoque: 9,
@@ -142,7 +142,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "prata",
     preco: 5990,
     imagem:
-      "https://images.unsplash.com/photo-1583121274602-3e2820c69888?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1726262842192-a54836151247?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["BMW Série 3", "Audi A4", "Mercedes-Benz Classe C"],
     aro: 19,
     estoque: 2,
@@ -156,7 +156,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "preto",
     preco: 3190,
     imagem:
-      "https://images.unsplash.com/photo-1542362567-b07e54358753?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1751601396877-8094d72b6ccf?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["Subaru BRZ", "Toyota 86", "Volkswagen Golf"],
     aro: 18,
     estoque: 6,
@@ -170,7 +170,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "preto",
     preco: 4790,
     imagem:
-      "https://images.unsplash.com/photo-1611068120813-eca5a8cbf793?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1768862670980-7be7cf0c66c8?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["Honda Civic", "Toyota Camry", "Nissan Maxima"],
     aro: 19,
     estoque: 4,
@@ -184,7 +184,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "bronze",
     preco: 2990,
     imagem:
-      "https://images.unsplash.com/photo-1597762470488-3877b1f538c6?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1759189206849-4ee5cebcd756?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["Ford Ranger", "Toyota Hilux", "Chevrolet S10"],
     aro: 17,
     estoque: 8,
@@ -198,7 +198,7 @@ const MOCK_PRODUCTS: Product[] = [
     cor: "branco",
     preco: 1990,
     imagem:
-      "https://images.unsplash.com/photo-1600706432502-77a0e2e32793?w=800&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1756862040980-8a4846bb864d?w=800&auto=format&fit=crop&q=80",
     carrosCompativeis: ["Fiat Uno", "Volkswagen Gol", "Ford Ka"],
     aro: 17,
     estoque: 11,
@@ -232,6 +232,12 @@ function applyFilters(products: Product[], params: ProductListParams): Product[]
   if (params.carro && params.carro.trim() !== "") {
     const termo = params.carro.toLowerCase();
     result = result.filter((p) =>
+      p.nome.toLowerCase().includes(termo) ||
+      p.modelo.toLowerCase().includes(termo) ||
+      p.cor.toLowerCase().includes(termo) ||
+      p.furacao.toLowerCase().includes(termo) ||
+      `aro ${p.aro}`.includes(termo) ||
+      `aro${p.aro}`.includes(termo) ||
       p.carrosCompativeis.some((c) => c.toLowerCase().includes(termo))
     );
   }

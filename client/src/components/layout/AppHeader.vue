@@ -64,7 +64,7 @@ function goAccount() {
       >
         <v-text-field
           v-model="searchQuery"
-          placeholder="Busque por modelo de carro..."
+          placeholder="Buscar rodas, carros, modelos..."
           variant="solo-filled"
           density="compact"
           hide-details
